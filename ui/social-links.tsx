@@ -2,14 +2,6 @@ export function SocialLinks() {
   return (
     <div className="hidden lg:flex gap-3 text-gray-400">
       <a
-        href="https://www.bartomolina.xyz/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-gray-400 hover:text-gray-500"
-      >
-        bartomolina.eth/lens
-      </a>
-      <a
         href="https://lenster.xyz/u/bartomolina"
         target="_blank"
         rel="noopener noreferrer"

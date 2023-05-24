@@ -1,10 +1,9 @@
 "use client";
 
-import { Publication } from "@/app/api/publications/publication";
+import type { BQResponse, Publications } from "@/app/api/bq-data";
 import {
   CategoryScale,
   Chart as ChartJS,
-  type ChartData,
   Colors,
   Legend,
   LinearScale,
@@ -35,7 +34,7 @@ const options = {
       position: "top" as const,
     },
     title: {
-      display: true,
+      display: false,
       text: "Publications",
     },
   },
@@ -52,11 +51,11 @@ export function LineChart({
   publications,
 }: {
   title: string;
-  publications: Publication[];
+  publications: Publications[];
 }) {
   const labels = publications?.map((row) => row.period);
   const series = Object.keys(publications[0]).slice(1) as Array<
-    keyof Publication
+    keyof Publications
   >;
   const datasets = series.map((label) => ({
     label: label as string,

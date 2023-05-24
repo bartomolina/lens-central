@@ -18,10 +18,18 @@ export function TopNavigation() {
               <div className="inline-flex text-3xl font-bold text-primary">
                 🍃
                 <span className="ml-1">Lens</span>
-                <span className="text-base-content">Central</span>
+                <span className="text-base-content font-normal">Central</span>
               </div>
             </Link>
           </div>
+          <a
+            href="https://www.bartomolina.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-gray-500 lg:block hidden"
+          >
+            bartomolina.eth/lens
+          </a>
         </div>
         <SocialLinks />
       </nav>

@@ -1,16 +1,17 @@
-import {
-  getPublicationsWeek,
-  getPublicationsYear,
-} from "@/app/api/publications/get-publications";
+import { BQQueryEnum, getData } from "@/app/api/get-data";
 import { Card } from "@/ui/charts/card";
 import { LineChart } from "@/ui/charts/line-chart";
 
-import { getTotals } from "./api/totals/get-totals";
+import { Publications } from "./api/bq-data";
 
 export default async function Page() {
-  const totals = await getTotals();
-  const publicationsWeek = await getPublicationsWeek();
-  const publicationsYear = await getPublicationsYear();
+  const totals = await getData(BQQueryEnum.TOTALS);
+  const publicationsWeek = (await getData(
+    BQQueryEnum.PUBLICATIONS_MONTH
+  )) as Publications[];
+  const publicationsYear = (await getData(
+    BQQueryEnum.PUBLICATIONS_YEAR
+  )) as Publications[];
 
   return (
     <main className="flex-1">
@@ -26,11 +27,11 @@ export default async function Page() {
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <LineChart
-          title="Publications last 7 days"
+          title="Publications last 30 days"
           publications={publicationsWeek}
         />
         <LineChart
-          title="Publications last 365 days"
+          title="Publications last year"
           publications={publicationsYear}
         />
       </div>

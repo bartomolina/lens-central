@@ -23,6 +23,11 @@ export const navigation: { name: string; items: NavItem[] }[] = [
         slug: "trending",
         icon: "/trending.svg",
       },
+      {
+        name: "Bot activity",
+        slug: "bots",
+        icon: "/bot.svg",
+      },
     ],
   },
   {
@@ -37,6 +42,21 @@ export const navigation: { name: string; items: NavItem[] }[] = [
         name: "Orb",
         slug: "orb",
         icon: "/orb.jpeg",
+      },
+      {
+        name: "Phaver",
+        slug: "phaver",
+        icon: "/phaver.png",
+      },
+      {
+        name: "Beats",
+        slug: "beats",
+        icon: "/beats.webp",
+      },
+      {
+        name: "DiverseHQ",
+        slug: "diversehq",
+        icon: "/diversehq.png",
       },
     ],
   },
