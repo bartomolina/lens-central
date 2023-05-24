@@ -1,5 +1,5 @@
 export type Publication = {
-  day: string;
+  period: string;
   posts: number;
   mirrors: number;
   comments: number;

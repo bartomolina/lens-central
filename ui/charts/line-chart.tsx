@@ -1,5 +1,6 @@
 "use client";
 
+import { Publication } from "@/app/api/publications/publication";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -11,6 +12,7 @@ import {
   PointElement,
   Title,
   Tooltip,
+  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
@@ -19,6 +21,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  Filler,
   Title,
   Tooltip,
   Legend,
@@ -33,15 +36,42 @@ const options = {
     },
     title: {
       display: true,
-      text: "Publications last 7 days",
+      text: "Publications",
+    },
+  },
+  scales: {
+    y: {
+      min: 0,
+      stacked: true,
     },
   },
 };
 
-export function LineChart({ data }: { data: ChartData<"line"> }) {
+export function LineChart({
+  title,
+  publications,
+}: {
+  title: string;
+  publications: Publication[];
+}) {
+  const labels = publications?.map((row) => row.period);
+  const series = Object.keys(publications[0]).slice(1) as Array<
+    keyof Publication
+  >;
+  const datasets = series.map((label) => ({
+    label: label as string,
+    data: publications?.map((row) => row[label] as number),
+    fill: true,
+  }));
+
+  const data = {
+    labels,
+    datasets,
+  };
+
   return (
     <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
-      <div className={`text-xl font-semibold`}>Chart</div>
+      <div className={`text-xl font-semibold`}>{title}</div>
 
       <div className="divider mt-2"></div>
       <div className="h-full w-full bg-base-100 pb-6">

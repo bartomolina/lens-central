@@ -1,13 +1,10 @@
 import { Bars3Icon } from "@heroicons/react/24/solid";
+import { SocialLinks } from "@/ui/social-links";
 import Link from "next/link";
-import Image from "next/image";
 
 export function TopNavigation() {
   return (
-    <div
-      className="sticky top-0 z-30 flex h-16 w-full justify-center bg-base-100 bg-opacity-90 text-base-content backdrop-blur 
-  transition-all duration-100"
-    >
+    <div className="flex h-16 w-full justify-center">
       <nav className="navbar w-full">
         <div className="flex flex-1 md:gap-1 lg:gap-2">
           <label
@@ -16,17 +13,17 @@ export function TopNavigation() {
           >
             <Bars3Icon className="h-6 w-6" />
           </label>
+          <div className="flex items-center lg:hidden">
+            <Link href={"/"}>
+              <div className="inline-flex text-3xl font-bold text-primary">
+                🍃
+                <span className="ml-1">Lens</span>
+                <span className="text-base-content">Central</span>
+              </div>
+            </Link>
+          </div>
         </div>
-        <div>
-          <a
-            href="https://www.github.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost drawer-button btn-square btn"
-          >
-            <Image src={"/github.svg"} alt="GitHub" width={20} height={20} />
-          </a>
-        </div>
+        <SocialLinks />
       </nav>
     </div>
   );

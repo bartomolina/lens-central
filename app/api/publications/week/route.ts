@@ -1,15 +1,13 @@
 import { bigquery } from "@/lib/big-query";
 
-const query = process.env.QUERY;
+const query = process.env.QUERY_PUBLICATIONS_WEEK;
 
 const options = {
-  query: query,
+  query,
 };
 
 export async function GET() {
   const [job] = await bigquery.createQueryJob(options);
-  console.log(`Job ${job.id} started.`);
-
   const [rows] = await job.getQueryResults();
 
   return new Response(JSON.stringify(rows), {

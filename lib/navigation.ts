@@ -1,7 +1,7 @@
 export type NavItem = {
   name: string;
   slug: string;
-  description?: string;
+  icon: string;
 };
 
 export const navigation: { name: string; items: NavItem[] }[] = [
@@ -10,7 +10,18 @@ export const navigation: { name: string; items: NavItem[] }[] = [
     items: [
       {
         name: "General",
-        slug: "general",
+        slug: "",
+        icon: "/dashboard.svg",
+      },
+      {
+        name: "Momoka adoption",
+        slug: "momoka",
+        icon: "/momoka.png",
+      },
+      {
+        name: "Trending",
+        slug: "trending",
+        icon: "/trending.svg",
       },
     ],
   },
@@ -20,10 +31,12 @@ export const navigation: { name: string; items: NavItem[] }[] = [
       {
         name: "Lenster",
         slug: "lenster",
+        icon: "/lenster.svg",
       },
       {
         name: "Orb",
         slug: "orb",
+        icon: "/orb.jpeg",
       },
     ],
   },
