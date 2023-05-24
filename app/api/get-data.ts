@@ -20,7 +20,8 @@ export async function getData(query: BQQuery) {
       throw new Error("Something went wrong!");
     }
     return (await response.json()) as BQResponse;
-  } catch {
+  } catch (error) {
+    console.log(error);
     notFound();
   }
 }
