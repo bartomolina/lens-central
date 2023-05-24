@@ -16,6 +16,9 @@ const bigquery = new BigQuery({
 
 export const processQuery = async (path: string) => {
   const query = `${process.env.BIGQUERY_QUERY}${path}`;
+
+  console.log("Query:", query);
+
   const options = {
     query,
   };
