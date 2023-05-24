@@ -1,8 +1,18 @@
 import { BigQuery } from "@google-cloud/bigquery";
 
+const credential = JSON.parse(
+  Buffer.from(process.env.GOOGLE_CREDENTIALS as string, "base64")
+    .toString()
+    .replace(/\n/g, "")
+);
+
 const bigquery = new BigQuery({
   projectId: process.env.BIGQUERY_PROJECT_ID,
-  keyFilename: "./credentials.json",
+  credentials: {
+    client_email: credential.client_email,
+    private_key: credential.private_key,
+  },
+  // keyFilename: "./credentials.json",
 });
 
 export const processQuery = async (path: string) => {
