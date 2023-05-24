@@ -15,7 +15,9 @@ export enum BQQueryEnum {
 
 export async function getData(query: BQQuery) {
   try {
-    const response = await fetch(`${getBaseUrl()}/api/${query}`);
+    const response = await fetch(`${getBaseUrl()}/api/${query}`, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }
