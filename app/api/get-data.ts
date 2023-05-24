@@ -1,5 +1,7 @@
 import "server-only";
 
+import { notFound } from "next/navigation";
+
 import { getBaseUrl } from "@/lib/get-base-url";
 
 import type { BQQuery, BQResponse } from "./bq-data";
@@ -12,15 +14,13 @@ export enum BQQueryEnum {
 }
 
 export async function getData(query: BQQuery) {
-  let response;
-  let data = [] as BQResponse;
   try {
-    response = await fetch(`${getBaseUrl()}/api/${query}`);
+    const response = await fetch(`${getBaseUrl()}/api/${query}`);
     if (!response.ok) {
       throw new Error("Something went wrong!");
     }
-    data = (await response.json()) as BQResponse;
-  } finally {
-    return data;
+    return (await response.json()) as BQResponse;
+  } catch {
+    notFound();
   }
 }
