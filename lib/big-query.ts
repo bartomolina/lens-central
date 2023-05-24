@@ -3,7 +3,7 @@ import { BigQuery } from "@google-cloud/bigquery";
 const credential = JSON.parse(
   Buffer.from(process.env.GOOGLE_CREDENTIALS as string, "base64")
     .toString()
-    .replace(/\n/g, "")
+    .replaceAll("\n", "")
 );
 
 const bigquery = new BigQuery({
@@ -12,7 +12,6 @@ const bigquery = new BigQuery({
     client_email: credential.client_email,
     private_key: credential.private_key,
   },
-  // keyFilename: "./credentials.json",
 });
 
 export const processQuery = async (path: string) => {

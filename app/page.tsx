@@ -42,7 +42,7 @@ export default async function Page() {
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6">
         <LineChart
-          title="Publications by app (last 30 days)"
+          title="Publications by App (last 30 days)"
           publications={publicationsApp}
           fill={false}
         />
