@@ -27,31 +27,14 @@ ChartJS.register(
   Colors
 );
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const,
-    },
-    title: {
-      display: false,
-      text: "Publications",
-    },
-  },
-  scales: {
-    y: {
-      min: 0,
-      stacked: true,
-    },
-  },
-};
-
 export function LineChart({
   title,
   publications,
+  fill = false,
 }: {
   title: string;
   publications: Publications[];
+  fill: boolean;
 }) {
   const labels = publications?.map((row) => row.period);
   const series = Object.keys(publications[0]).slice(1) as Array<
@@ -60,8 +43,27 @@ export function LineChart({
   const datasets = series.map((label) => ({
     label: label as string,
     data: publications?.map((row) => row[label] as number),
-    fill: true,
+    fill,
   }));
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top" as const,
+      },
+      title: {
+        display: false,
+        text: "Publications",
+      },
+    },
+    scales: {
+      y: {
+        min: 0,
+        stacked: fill,
+      },
+    },
+  };
 
   const data = {
     labels,

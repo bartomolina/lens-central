@@ -12,6 +12,9 @@ export default async function Page() {
   const publicationsYear = (await getData(
     BQQueryEnum.PUBLICATIONS_YEAR
   )) as Publications[];
+  const publicationsApp = (await getData(
+    BQQueryEnum.PUBLICATIONS_APP
+  )) as Publications[];
 
   return (
     <main className="flex-1">
@@ -29,10 +32,19 @@ export default async function Page() {
         <LineChart
           title="Publications last 30 days"
           publications={publicationsWeek}
+          fill={true}
         />
         <LineChart
           title="Publications last year"
           publications={publicationsYear}
+          fill={true}
+        />
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-6">
+        <LineChart
+          title="Publications by app (last 30 days)"
+          publications={publicationsApp}
+          fill={false}
         />
       </div>
     </main>
