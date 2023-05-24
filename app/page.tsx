@@ -20,13 +20,13 @@ export default async function Page() {
     <main className="flex-1">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {/* @ts-expect-error Server Component */}
-        <Card title="Posts" value={totals[0].posts} icon="📝" />
+        <Card title="Posts" value={totals[0]?.posts} icon="📝" />
         {/* @ts-expect-error Server Component */}
-        <Card title="Comments" value={totals[0].comments} icon="🗣️" />
+        <Card title="Comments" value={totals[0]?.comments} icon="🗣️" />
         {/* @ts-expect-error Server Component */}
-        <Card title="Mirrors" value={totals[0].mirrors} icon="🔄" />
+        <Card title="Mirrors" value={totals[0]?.mirrors} icon="🔄" />
         {/* @ts-expect-error Server Component */}
-        <Card title="Collects" value={totals[0].collects} icon="📸" />
+        <Card title="Collects" value={totals[0]?.collects} icon="📸" />
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <LineChart

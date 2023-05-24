@@ -12,13 +12,15 @@ export enum BQQueryEnum {
 }
 
 export async function getData(query: BQQuery) {
-  const response = await fetch(`${getBaseUrl()}/api/${query}`);
-
-  if (!response.ok) {
-    throw new Error("Something went wrong!");
+  let response;
+  let data = [] as BQResponse;
+  try {
+    response = await fetch(`${getBaseUrl()}/api/${query}`);
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+    data = (await response.json()) as BQResponse;
+  } finally {
+    return data;
   }
-
-  const publications = (await response.json()) as BQResponse;
-
-  return publications;
 }

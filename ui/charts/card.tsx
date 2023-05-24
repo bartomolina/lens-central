@@ -17,7 +17,7 @@ export async function Card({
         </div>
         <div className="stat-title dark:text-slate-300">{title}</div>
         <div className={`stat-value text-primary text-3xl dark:text-slate-300`}>
-          {value.toLocaleString()}
+          {value?.toLocaleString()}
         </div>
       </div>
     </div>

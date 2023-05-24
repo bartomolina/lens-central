@@ -36,6 +36,8 @@ export function LineChart({
   publications: Publications[];
   fill: boolean;
 }) {
+  if (publications.length === 0) return <></>;
+
   const labels = publications?.map((row) => row.period);
   const series = Object.keys(publications[0]).slice(1) as Array<
     keyof Publications
