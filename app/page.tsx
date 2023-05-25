@@ -1,6 +1,7 @@
 import { BQQueryEnum, getData } from "@/app/api/get-data";
 import { Card } from "@/ui/charts/card";
 import { LineChart } from "@/ui/charts/line-chart";
+import { Table } from "@/ui/charts/table";
 
 import { Publications } from "./api/bq-data";
 
@@ -15,6 +16,9 @@ export default async function Page() {
   const publicationsApp = (await getData(
     BQQueryEnum.PUBLICATIONS_APP
   )) as Publications[];
+  const profiles = await getData(BQQueryEnum.PROFILES_POSTS, false);
+
+  console.log(profiles);
 
   return (
     <main className="flex-1">
@@ -30,15 +34,18 @@ export default async function Page() {
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <LineChart
-          title="Publications last 30 days"
-          publications={publicationsWeek}
-          fill={true}
-        />
-        <LineChart
           title="Publications last year"
           publications={publicationsYear}
           fill={true}
         />
+        <LineChart
+          title="Publications last 30 days"
+          publications={publicationsWeek}
+          fill={true}
+        />
+      </div>
+      <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <Table />
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6">
         <LineChart

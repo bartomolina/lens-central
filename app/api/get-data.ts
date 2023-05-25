@@ -11,19 +11,16 @@ export enum BQQueryEnum {
   PUBLICATIONS_MONTH = "publications_month",
   PUBLICATIONS_YEAR = "publications_year",
   PUBLICATIONS_APP = "publications_app",
+  PROFILES_POSTS = "profiles_posts",
 }
 
-export async function getData(query: BQQuery) {
+export async function getData(query: BQQuery, cache = true) {
   try {
     const response = await fetch(`${getBaseUrl()}/api/${query}`, {
-      cache: "no-store",
+      cache: cache ? "default" : "no-store",
     });
-    if (!response.ok) {
-      throw new Error("Something went wrong!");
-    }
     return (await response.json()) as BQResponse;
-  } catch (error) {
-    console.log(error);
+  } catch {
     notFound();
   }
 }
