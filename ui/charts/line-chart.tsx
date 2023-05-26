@@ -29,10 +29,12 @@ ChartJS.register(
 
 export function LineChart({
   title,
+  subtitle,
   publications,
   fill = false,
 }: {
   title: string;
+  subtitle?: string;
   publications: Publications[];
   fill: boolean;
 }) {
@@ -46,7 +48,13 @@ export function LineChart({
     label: label as string,
     data: publications?.map((row) => row[label] as number),
     fill,
+    hidden: false,
   }));
+
+  const lenster = datasets.findLast((row) => row.label === "lenster");
+  if (lenster) {
+    lenster.hidden = true;
+  }
 
   const options = {
     responsive: true,
@@ -74,8 +82,10 @@ export function LineChart({
 
   return (
     <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
-      <div className={`text-xl font-semibold`}>{title}</div>
-
+      <div className="flex items-center justify-between">
+        <div className={`text-xl font-semibold`}>{title}</div>
+        <div className={`text-xs`}>{subtitle}</div>
+      </div>
       <div className="divider mt-2" />
       <div className="h-full w-full bg-base-100 pb-6">
         <Line options={options} data={data} />

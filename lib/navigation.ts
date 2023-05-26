@@ -35,7 +35,7 @@ export const navigation: { name: string; items: NavItem[] }[] = [
     items: [
       {
         name: "Lenster",
-        slug: "lenster",
+        slug: "apps/lenster",
         icon: "/lenster.svg",
       },
       {
@@ -45,17 +45,17 @@ export const navigation: { name: string; items: NavItem[] }[] = [
       },
       {
         name: "Phaver",
-        slug: "phaver",
+        slug: "apps/phaver",
         icon: "/phaver.png",
       },
       {
         name: "Beats",
-        slug: "beats",
+        slug: "apps/beats",
         icon: "/beats.webp",
       },
       {
         name: "DiverseHQ",
-        slug: "diversehq",
+        slug: "apps/diversehq",
         icon: "/diversehq.png",
       },
     ],

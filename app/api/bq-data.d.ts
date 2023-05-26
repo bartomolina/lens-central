@@ -18,6 +18,8 @@ export type Publications = {
 
 export type Profile = {
   handle: string;
+  name: string;
+  picture: string;
   posts: number;
   mirrors: number;
   comments: number;

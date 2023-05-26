@@ -1,8 +1,5 @@
 import "server-only";
 
-import dns from "node:dns";
-dns.setDefaultResultOrder("ipv4first");
-
 import { notFound } from "next/navigation";
 
 import { getBaseUrl } from "@/lib/get-base-url";
@@ -13,24 +10,19 @@ export enum BQQueryEnum {
   TOTALS = "totals",
   PUBLICATIONS_MONTH = "publications_month",
   PUBLICATIONS_YEAR = "publications_year",
-  PUBLICATIONS_APP = "publications_app",
+  PUBLICATIONS_APP_TOP = "publications_app_top",
+  PUBLICATIONS_APP_OTHER = "publications_app_other",
+  PUBLICATIONS_APP_UTILS = "publications_app_utils",
   PROFILES_POSTS = "profiles_posts",
 }
 
-export async function getData(query: BQQuery) {
-  console.log(`GetData: ${query} init`);
+export async function getData(query: BQQuery, cache = true) {
   try {
-    console.log("Fetching:", `${getBaseUrl()}/api/${query}`);
-
-    const response = await fetch(`${getBaseUrl()}/api/${query}`);
-
-    console.log("GetData: ok");
+    const response = await fetch(`${getBaseUrl()}/api/${query}`, {
+      cache: cache ? "force-cache" : "no-store",
+    });
     return await response.json();
-  } catch (error: unknown) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    console.log("GetData: error:", error.message);
-    console.log(error);
+  } catch {
     notFound();
   }
 }
