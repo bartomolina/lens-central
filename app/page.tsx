@@ -3,10 +3,10 @@ import { Card } from "@/ui/charts/card";
 import { LineChart } from "@/ui/charts/line-chart";
 import { Table } from "@/ui/charts/table";
 
-import { Publications } from "./api/bq-data";
+import { Profile, Publications, Totals } from "./api/bq-data";
 
 export default async function Page() {
-  const totals = await getData(BQQueryEnum.TOTALS);
+  const totals = (await getData(BQQueryEnum.TOTALS)) as Totals[];
   const publicationsWeek = (await getData(
     BQQueryEnum.PUBLICATIONS_MONTH
   )) as Publications[];
@@ -16,7 +16,7 @@ export default async function Page() {
   const publicationsApp = (await getData(
     BQQueryEnum.PUBLICATIONS_APP
   )) as Publications[];
-  const profiles = await getData(BQQueryEnum.PROFILES_POSTS);
+  // const profiles = (await getData(BQQueryEnum.PROFILES_POSTS)) as Profile[];
 
   return (
     <main className="flex-1">
@@ -43,7 +43,7 @@ export default async function Page() {
         />
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* <Table data={profiles} /> */}
+        {/* <Table profiles={profiles} /> */}
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6">
         <LineChart

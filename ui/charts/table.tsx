@@ -1,7 +1,7 @@
 import { Profile } from "@/app/api/bq-data";
 import Image from "next/image";
 
-export function Table(profiles: Profile[]) {
+export function Table({ profiles }: { profiles: Profile[] }) {
   return (
     <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
       <div className={`text-xl font-semibold`}>Title</div>

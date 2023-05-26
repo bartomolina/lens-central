@@ -1,6 +1,6 @@
 "use client";
 
-import type { BQResponse, Publications } from "@/app/api/bq-data";
+import type { Publications } from "@/app/api/bq-data";
 import {
   CategoryScale,
   Chart as ChartJS,

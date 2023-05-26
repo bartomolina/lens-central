@@ -1,10 +1,14 @@
 import "server-only";
 
+import dns from "node:dns";
+
+dns.setDefaultResultOrder("ipv4first");
+
 import { notFound } from "next/navigation";
 
 import { getBaseUrl } from "@/lib/get-base-url";
 
-import type { BQQuery, BQResponse } from "./bq-data";
+import type { BQQuery } from "./bq-data";
 
 export enum BQQueryEnum {
   TOTALS = "totals",
@@ -17,12 +21,16 @@ export enum BQQueryEnum {
 export async function getData(query: BQQuery) {
   console.log(`GetData: ${query} init`);
   try {
+    console.log("Fetching:", `${getBaseUrl()}/api/${query}`);
+
     const response = await fetch(`${getBaseUrl()}/api/${query}`);
 
     console.log("GetData: ok");
-    return (await response.json()) as BQResponse;
-  } catch {
-    console.log("GetData: error");
+    return await response.json();
+  } catch (error: unknown) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    console.log("GetData: error:", error.message);
     notFound();
   }
 }
