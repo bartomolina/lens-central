@@ -1,6 +1,6 @@
 "use client";
 
-import type { Publications } from "@/app/api/bq-data";
+import type { PeriodicData } from "@/app/api/bq-data";
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -30,23 +30,21 @@ ChartJS.register(
 export function LineChart({
   title,
   subtitle,
-  publications,
+  data,
   fill = false,
 }: {
   title: string;
   subtitle?: string;
-  publications: Publications[];
-  fill: boolean;
+  data: PeriodicData;
+  fill?: boolean;
 }) {
-  if (publications.length === 0) return <></>;
+  if (data.length === 0) return <></>;
 
-  const labels = publications?.map((row) => row.period);
-  const series = Object.keys(publications[0]).slice(1) as Array<
-    keyof Publications
-  >;
+  const labels = data?.map((row) => row.period);
+  const series = Object.keys(data[0]).slice(1) as Array<keyof typeof data>;
   const datasets = series.map((label) => ({
     label: label as string,
-    data: publications?.map((row) => row[label] as number),
+    data: data?.map((row) => row[label] as number),
     fill,
     hidden: false,
   }));
@@ -75,11 +73,6 @@ export function LineChart({
     },
   };
 
-  const data = {
-    labels,
-    datasets,
-  };
-
   return (
     <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
       <div className="flex items-center justify-between">
@@ -88,7 +81,7 @@ export function LineChart({
       </div>
       <div className="divider mt-2" />
       <div className="h-full w-full bg-base-100 pb-6">
-        <Line options={options} data={data} />
+        <Line options={options} data={{ labels, datasets }} />
       </div>
     </div>
   );

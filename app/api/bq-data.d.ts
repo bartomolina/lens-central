@@ -9,13 +9,6 @@ export type Totals = {
   collects: number;
 };
 
-export type Publications = {
-  period: string;
-  posts: number;
-  mirrors: number;
-  comments: number;
-};
-
 export type Profile = {
   handle: string;
   name: string;
@@ -25,4 +18,24 @@ export type Profile = {
   comments: number;
   collects: number;
   curated: boolean;
+};
+
+export type PeriodicData = PublicationDataSet[] | ProfileDataset[];
+
+export type MomokaAdoption = {
+  period: string;
+  momoka: number;
+  legacy: number;
+};
+
+export type Publications = {
+  period: string;
+  posts: number;
+  mirrors: number;
+  comments: number;
+};
+
+export type ProfileDataset = {
+  period: string;
+  profiles: number;
 };

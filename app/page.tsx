@@ -3,25 +3,18 @@ import { Card } from "@/ui/charts/card";
 import { LineChart } from "@/ui/charts/line-chart";
 import { ProfilesTable } from "@/ui/tables/profiles-table";
 
-import { Publications, Totals } from "./api/bq-data";
-
 export default async function Page() {
-  const totals = (await getData(BQQueryEnum.TOTALS)) as Totals[];
-  const publicationsWeek = (await getData(
-    BQQueryEnum.PUBLICATIONS_MONTH
-  )) as Publications[];
-  const publicationsYear = (await getData(
-    BQQueryEnum.PUBLICATIONS_YEAR
-  )) as Publications[];
-  const publicationsAppTop = (await getData(
-    BQQueryEnum.PUBLICATIONS_APP_TOP
-  )) as Publications[];
-  const publicationsAppOther = (await getData(
+  const totals = await getData(BQQueryEnum.TOTALS);
+  const publicationsYear = await getData(BQQueryEnum.PUBLICATIONS_YEAR);
+  const publicationsMonth = await getData(BQQueryEnum.PUBLICATIONS_MONTH);
+  const publicationsAppTop = await getData(BQQueryEnum.PUBLICATIONS_APP_TOP);
+  const publicationsAppOther = await getData(
     BQQueryEnum.PUBLICATIONS_APP_OTHER
-  )) as Publications[];
-  const publicationsAppUtils = (await getData(
+  );
+  const publicationsAppUtils = await getData(
     BQQueryEnum.PUBLICATIONS_APP_UTILS
-  )) as Publications[];
+  );
+  const profilesNew = await getData(BQQueryEnum.PROFILES_NEW);
 
   return (
     <main className="flex-1">
@@ -38,12 +31,12 @@ export default async function Page() {
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <LineChart
           title="Publications past year"
-          publications={publicationsYear}
+          data={publicationsYear}
           fill={true}
         />
         <LineChart
           title="Publications past 30 days"
-          publications={publicationsWeek}
+          data={publicationsMonth}
           fill={true}
         />
       </div>
@@ -51,19 +44,11 @@ export default async function Page() {
         <LineChart
           title="🥇 Top social Apps"
           subtitle="Past 30 days, Lenster hidden by default"
-          publications={publicationsAppTop}
-          fill={false}
+          data={publicationsAppTop}
         />
-        <LineChart
-          title="🥈 Other Social Apps"
-          publications={publicationsAppOther}
-          fill={false}
-        />
-        <LineChart
-          title="🛠️ Utilities"
-          publications={publicationsAppUtils}
-          fill={false}
-        />
+        <LineChart title="🥈 Other social Apps" data={publicationsAppOther} />
+        <LineChart title="🛠️ Utilities" data={publicationsAppUtils} />
+        <LineChart title="New Profiles" data={profilesNew} />
       </div>
       <div className="mt-4 grid grid-cols-1">
         {/* @ts-expect-error Server Component */}

@@ -14,6 +14,8 @@ export enum BQQueryEnum {
   PUBLICATIONS_APP_OTHER = "publications_app_other",
   PUBLICATIONS_APP_UTILS = "publications_app_utils",
   PROFILES_POSTS = "profiles_posts",
+  PROFILES_NEW = "profiles_new",
+  MOMOKA_ADOPTION = "momoka_adoption",
 }
 
 export async function getData(query: BQQuery, cache = true) {
