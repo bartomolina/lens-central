@@ -14,13 +14,15 @@ export enum BQQueryEnum {
   PROFILES_POSTS = "profiles_posts",
 }
 
-export async function getData(query: BQQuery, cache = true) {
+export async function getData(query: BQQuery) {
+  console.log(`GetData: ${query} init`);
   try {
-    const response = await fetch(`${getBaseUrl()}/api/${query}`, {
-      cache: cache ? "default" : "no-store",
-    });
+    const response = await fetch(`${getBaseUrl()}/api/${query}`);
+
+    console.log("GetData: ok");
     return (await response.json()) as BQResponse;
   } catch {
+    console.log("GetData: error");
     notFound();
   }
 }

@@ -16,9 +16,7 @@ export default async function Page() {
   const publicationsApp = (await getData(
     BQQueryEnum.PUBLICATIONS_APP
   )) as Publications[];
-  const profiles = await getData(BQQueryEnum.PROFILES_POSTS, false);
-
-  console.log(profiles);
+  const profiles = await getData(BQQueryEnum.PROFILES_POSTS);
 
   return (
     <main className="flex-1">
@@ -45,7 +43,7 @@ export default async function Page() {
         />
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Table />
+        {/* <Table data={profiles} /> */}
       </div>
       <div className="mt-4 grid grid-cols-1 gap-6">
         <LineChart

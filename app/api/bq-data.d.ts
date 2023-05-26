@@ -18,7 +18,7 @@ export type Publications = {
   comments: number;
 };
 
-export type Profiles = {
+export type Profile = {
   handle: string;
   posts: number;
   mirrors: number;
