@@ -17,6 +17,7 @@ export function SideNav() {
             <span className="text-base-content font-normal">Central</span>
           </div>
         </Link>
+        <span className="font-mono text-xs text-neutral-400">0.0.1</span>
       </div>
       <div className="h-5" />
       <div className="space-y-6">

@@ -1,7 +1,6 @@
 import "server-only";
 
 import dns from "node:dns";
-
 dns.setDefaultResultOrder("ipv4first");
 
 import { notFound } from "next/navigation";
@@ -31,6 +30,7 @@ export async function getData(query: BQQuery) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     console.log("GetData: error:", error.message);
+    console.log(error);
     notFound();
   }
 }
