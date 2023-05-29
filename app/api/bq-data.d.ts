@@ -9,15 +9,12 @@ export type Totals = {
   collects: number;
 };
 
-export type Profile = {
+export type ProfileData = {
   handle: string;
   name: string;
   picture: string;
-  posts: number;
-  mirrors: number;
-  comments: number;
-  collects: number;
   curated: boolean;
+  [key: string]: number;
 };
 
 export type PeriodicData = PublicationDataSet[] | ProfileDataset[];

@@ -1,32 +1,45 @@
-import { Profile } from "@/app/api/bq-data";
-import { ProfileRow } from "./profile-row";
-import { BQQueryEnum, getData } from "@/app/api/get-data";
+import { ProfileData } from "@/app/api/bq-data";
 
-export async function ProfilesTable() {
-  const profiles = (await getData(BQQueryEnum.PROFILES_POSTS)) as Profile[];
+import { ProfileName } from "./profile-name";
+import { ProfileRow } from "./profile-row";
+
+export function ProfilesTable({
+  title,
+  data,
+}: {
+  title: string;
+  data: Array<ProfileData>;
+}) {
+  const columns = Object.keys(data[0]);
+  const profileCols = new Set(["handle", "name", "picture", "curated"]);
 
   return (
-    <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
+    <div className={"card h-fit w-full bg-base-100 p-6 shadow-xl"}>
       <div className="flex items-center gap-2">
-        <div className={`text-xl font-semibold`}>Top profiles</div>
+        <div className={`text-xl font-semibold`}>{title}</div>
       </div>
       <div className="divider mt-2" />
-      <div className="h-full w-full bg-base-100 pb-6">
-        <div className="overflow-x-auto w-full">
-          <table className="table w-full">
+      <div className="w-full bg-base-100  pb-6">
+        <div className="w-full overflow-x-auto">
+          <table className="table-compact table w-full">
             <thead>
               <tr>
-                <th>Profile</th>
-                <th>Posts</th>
-                <th>Mirrors</th>
-                <th>Comments</th>
-                <th>Collects</th>
+                <th className="text-xs normal-case">Profile</th>
+                {columns.map(
+                  (column) =>
+                    !profileCols.has(column) && (
+                      <th key={column} className="text-xs capitalize">
+                        {column}
+                      </th>
+                    )
+                )}
               </tr>
             </thead>
             <tbody>
-              {profiles.map((profile) => (
+              {data.map((profile) => (
                 <tr key={profile.handle}>
-                  <ProfileRow profile={profile} />
+                  <ProfileName profile={profile} />
+                  <ProfileRow profile={profile} skip={profileCols} />
                 </tr>
               ))}
             </tbody>

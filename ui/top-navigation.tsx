@@ -1,6 +1,7 @@
 import { Bars3Icon } from "@heroicons/react/24/solid";
-import { SocialLinks } from "@/ui/social-links";
 import Link from "next/link";
+
+import { SocialLinks } from "@/ui/social-links";
 
 export function TopNavigation() {
   return (
@@ -18,7 +19,7 @@ export function TopNavigation() {
               <div className="inline-flex text-3xl font-bold text-primary">
                 🍃
                 <span className="ml-1">Lens</span>
-                <span className="text-base-content font-normal">Central</span>
+                <span className="font-normal text-base-content">Central</span>
               </div>
             </Link>
           </div>
@@ -26,7 +27,7 @@ export function TopNavigation() {
             href="https://www.bartomolina.xyz/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-gray-500 lg:block hidden"
+            className="hidden text-gray-400 hover:text-gray-500 lg:block"
           >
             bartomolina.eth/lens
           </a>

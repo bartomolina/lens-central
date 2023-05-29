@@ -1,6 +1,6 @@
 export function SocialLinks() {
   return (
-    <div className="hidden lg:flex gap-3 text-gray-400">
+    <div className="hidden gap-3 text-gray-400 lg:flex">
       <a
         href="https://lenster.xyz/u/bartomolina"
         target="_blank"

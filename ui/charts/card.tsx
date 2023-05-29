@@ -11,12 +11,12 @@ export async function Card({
     <div className="stats shadow">
       <div className="stat">
         <div
-          className={`stat-figure text-primary text-3xl dark:text-slate-300`}
+          className={`stat-figure text-3xl text-primary dark:text-slate-300`}
         >
           {icon}
         </div>
         <div className="stat-title dark:text-slate-300">{title}</div>
-        <div className={`stat-value text-primary text-3xl dark:text-slate-300`}>
+        <div className={`stat-value text-3xl text-primary dark:text-slate-300`}>
           {value?.toLocaleString()}
         </div>
       </div>

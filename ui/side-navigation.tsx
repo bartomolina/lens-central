@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { navigation, type NavItem } from "@/lib/navigation";
-import { useSelectedLayoutSegment } from "next/navigation";
 import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import { useSelectedLayoutSegment } from "next/navigation";
+
+import { navigation, type NavItem } from "@/lib/navigation";
 
 export function SideNav() {
   return (
@@ -14,7 +15,7 @@ export function SideNav() {
           <div className="inline-flex text-3xl font-bold text-primary">
             🍃
             <span className="ml-1">Lens</span>
-            <span className="text-base-content font-normal">Central</span>
+            <span className="font-normal text-base-content">Central</span>
           </div>
         </Link>
         <span className="font-mono text-xs text-neutral-400">0.0.1</span>
@@ -53,7 +54,7 @@ function GlobalNavItem({ item }: { item: NavItem }) {
       <Image src={item.icon} alt={item.name} width={20} height={20} />
       {item.name}
       {isActive && (
-        <span className="absolute inset-y-0 left-0 w-1 rounded-tr-md rounded-br-md bg-primary" />
+        <span className="absolute inset-y-0 left-0 w-1 rounded-r-md bg-primary" />
       )}
     </Link>
   );

@@ -1,19 +1,20 @@
 "use client";
 
-import type { PeriodicData } from "@/app/api/bq-data";
 import {
   CategoryScale,
   Chart as ChartJS,
   Colors,
+  Filler,
   Legend,
   LinearScale,
   LineElement,
   PointElement,
   Title,
   Tooltip,
-  Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
+import type { PeriodicData } from "@/app/api/bq-data";
 
 ChartJS.register(
   CategoryScale,
@@ -32,11 +33,15 @@ export function LineChart({
   subtitle,
   data,
   fill = false,
+  hide,
+  max,
 }: {
   title: string;
   subtitle?: string;
   data: PeriodicData;
   fill?: boolean;
+  hide?: string;
+  max?: number;
 }) {
   if (data.length === 0) return <></>;
 
@@ -49,9 +54,11 @@ export function LineChart({
     hidden: false,
   }));
 
-  const lenster = datasets.findLast((row) => row.label === "lenster");
-  if (lenster) {
-    lenster.hidden = true;
+  if (hide) {
+    const lenster = datasets.findLast((row) => row.label === hide);
+    if (lenster) {
+      lenster.hidden = true;
+    }
   }
 
   const options = {
@@ -68,19 +75,20 @@ export function LineChart({
     scales: {
       y: {
         min: 0,
+        max,
         stacked: fill,
       },
     },
   };
 
   return (
-    <div className={"card mt-6 w-full bg-base-100 p-6 shadow-xl"}>
+    <div className={"card h-fit w-full bg-base-100 p-6 shadow-xl"}>
       <div className="flex items-center justify-between">
         <div className={`text-xl font-semibold`}>{title}</div>
         <div className={`text-xs`}>{subtitle}</div>
       </div>
       <div className="divider mt-2" />
-      <div className="h-full w-full bg-base-100 pb-6">
+      <div className="w-full bg-base-100 pb-6">
         <Line options={options} data={{ labels, datasets }} />
       </div>
     </div>

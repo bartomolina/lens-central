@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    mdxRs: true,
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -9,6 +12,10 @@ const nextConfig = {
       },
     ],
   },
+  eslint: {
+    dirs: ["app", "ui", "lib"],
+  },
 };
 
-module.exports = nextConfig;
+const withMDX = require("@next/mdx")();
+module.exports = withMDX(nextConfig);
