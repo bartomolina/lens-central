@@ -27,7 +27,7 @@ export default async function Page() {
       <div className="collapse-plus collapse mb-4 w-full rounded bg-base-100">
         <input type="checkbox" />
         <div className="collapse-title text-xl font-medium">💡 Insights</div>
-        <div className="collapse-content prose max-w-xl">
+        <div className="collapse-content prose max-w-2xl">
           <Insights />
         </div>
       </div>
@@ -67,7 +67,7 @@ export default async function Page() {
         <LineChart title="🥈 Other social Apps" data={publicationsAppOther} />
         <LineChart title="🛠️ Utilities" data={publicationsAppUtils} />
         <LineChart
-          title="🏆 Lenster dominance"
+          title="🏆 Lenster dominance past 90 days"
           data={lensterDominance}
           max={100}
         />
